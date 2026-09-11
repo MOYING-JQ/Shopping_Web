@@ -1,4 +1,4 @@
-# project_test —— 墨莹（moying）电商网站后端
+# project_test —— 墨莹（moying）电商网站前后端
 
 > 基于 **SpringBoot 4 + MyBatis-Plus + MySQL** 构建的个人全栈项目，覆盖用户认证、商品分类、购物车、订单等电商核心业务，采用 **JWT 双 Token** 认证与 **AOP** 切面日志。
 
