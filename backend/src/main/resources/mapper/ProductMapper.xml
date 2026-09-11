@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moying.project_test.mapper.ProductMapper">
+
+    <select id="selectProductPage" resultType="com.moying.project_test.vo.ProductVo">
+        SELECT
+            p.id,p.name,p.price,p.sales,p.stock,p.image,p.status,p.create_time,
+            c.name AS category_name
+        FROM t_product p
+                 LEFT JOIN t_category c ON p.category_id = c.id
+        <where>
+
+            <if test="dto.id != null">
+                AND c.id = #{dto.id}
+            </if>
+            <if test="dto.userId != null and dto.userId !=''">
+                AND p.seller_id = #{dto.userId}
+            </if>
+            <if test="dto.name != null and dto.name != ''">
+                AND p.name LIKE CONCAT('%',#{dto.name},'%')
+            </if>
+            <if test="dto.categoryId != null">
+                AND c.parent_id = #{dto.categoryId}
+            </if>
+            <if test="dto.minPrice != null">
+                AND p.price &gt;= #{dto.minPrice}
+            </if>
+            <if test="dto.maxPrice != null">
+                AND p.price &lt;= #{dto.maxPrice}
+            </if>
+            <if test="dto.status != null">
+                AND p.status = #{dto.status}
+            </if>
+            AND p.deleted = 0
+        </where>
+        <if test="dto.sortField != null and dto.sortOrder != null">
+            ORDER BY ${dto.sortField} ${dto.sortOrder}
+        </if>
+
+    </select>
+
+</mapper>

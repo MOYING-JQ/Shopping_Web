@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moying.project_test.mapper.UserMapper">
+
+    <select id="selectPageAll" resultType="com.moying.project_test.entity.User">
+        select * from t_user u
+        <where>
+            u.deleted = 0
+            <if test="userIdList != null and userIdList.size()>0">
+                AND u.id IN
+                <foreach collection="userIdList" open="(" separator="," close=")" item="uid">
+                    #{uid}
+                </foreach>
+            </if>
+            <if test="dto.username != null">
+                and u.username like CONCAT('%',#{dto.username},'%')
+            </if>
+            <if test="dto.phone != null">
+                and u.phone like CONCAT('%',#{dto.phone},'%')
+            </if>
+            <if test="dto.gender != null">
+                and u.gender = #{dto.gender}
+            </if>
+            <if test="dto.level != null">
+                and u.level = #{dto.level}
+            </if>
+            <if test="dto.status != null">
+                and u.status = #{dto.status}
+            </if>
+            <if test="dto.startTime != null">
+                <![CDATA[ AND u.create_time >= #{dto.startTime} ]]>
+            </if>
+            <if test="dto.endTime != null">
+                <![CDATA[ AND u.create_time <= #{dto.endTime} ]]>
+            </if>
+
+        </where>
+    </select>
+</mapper>

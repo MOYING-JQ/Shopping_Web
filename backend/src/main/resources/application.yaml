@@ -1,0 +1,59 @@
+#服务器配置
+server:
+    port: 8080
+    servlet:
+        encoding:
+            charset: UTF-8
+            enabled: true
+#Spring配置
+spring:
+    servlet:
+        multipart:
+          enabled: true
+          max-file-size: 10MB
+          max-request-size: 20MB
+    messages:
+        encoding: UTF-8
+    datasource:
+        url: jdbc:mysql://localhost:3306/ecommerce?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        username: root
+        password: zjq14551
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    mvc:
+        # 当没有找到处理程序时抛出异常
+        throw-exception-if-no-handler-found: true
+# MyBatis配置
+mybatis:
+  # 原生mybatis这里什么都不要放！mapper‑locations交给mybatis‑plus管理
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.moying.project_test.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+# JWT配置
+jwt:
+  # JWT密钥
+  secret: zjqaizhaoro14551234dmcjndjcncsdsc
+  # JWT过期时间（秒）
+  expiration: 3600
+# 日志配置
+logging:
+  level:
+    # 项目包日志级别
+    com.moying.project_test: debug
+
+image_upload:
+    path: D:/Projection/Project-test/date/upload/image
+    access-prefix: /images
+    domain: http://127.0.0.1:8080
+
+

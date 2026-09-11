@@ -1,0 +1,21 @@
+# ===== Java后端 =====
+backend/target/
+backend/.idea/
+backend/*.iml
+backend/*.class
+backend/*.jar
+backend/*.log
+
+# ===== Vue前端 =====
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.idea/
+frontend/npm-debug.log
+
+# ===== IDE与系统文件 =====
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.tmp
